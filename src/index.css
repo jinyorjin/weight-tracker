@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+li,
+input,
+button {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== 기본 폰트 스타일 ===== */
+body {
+  background-color: #ffc107; /* Bootstrap warning 노랑 */
+  font-family: "Segoe UI", "Noto Sans KR", sans-serif;
+  color: #212529;
+  line-height: 1.6;
+}
+
+/* ===== 타이틀 ===== */
+h1,
+h2,
+h3 {
+  font-weight: 700;
+  color: #212529;
+}
+
+h1 {
+  font-size: 2.8rem;
+}
+
+h5 {
+  font-weight: 600;
+}
+
+/* ===== 버튼 커스터마이징 ===== */
+button {
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 8px;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}
+
+/* ===== 입력폼 ===== */
+input[type="number"],
+input[type="text"],
+.form-control {
+  border-radius: 8px;
+  padding: 0.5rem;
+  border: 1px solid #ced4da;
+  font-size: 1rem;
+}
+
+/* ===== 카드 ===== */
+.card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* ===== 아이콘 표정 ===== */
+.angry-chick {
+  font-size: 1.8rem;
+  color: crimson;
+}
+.happy-chick {
+  font-size: 1.8rem;
+  color: green;
+}
+
+/* ===== 캘린더 스타일 (react-calendar 커스터마이징) ===== */
+.react-calendar {
+  border: none;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+.react-calendar__tile {
+  border-radius: 6px;
+  padding: 0.5rem 0.25rem;
+  text-align: center;
+}
+
+.react-calendar__tile p {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+/* ===== 푸터 ===== */
+footer {
+  margin-top: auto;
+  font-size: 0.9rem;
+  text-align: center;
+  color: #333;
+}
+footer hr {
+  margin: 2rem 0 1rem;
+  border-color: rgba(0, 0, 0, 0.1);
+}
