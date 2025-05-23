@@ -9,7 +9,7 @@ Track your daily weight, set goals, and visualize your progress — all in a fri
 
 ## 📸 Demo
 
-👉 [Live App](https://soft-clafoutis-351121.netlify.app/)  
+👉 [Live App](weighttrackk.netlify.app)  
 📦 GitHub Repo: https://github.com/jinyorjin/weight-tracker
 
 ---
