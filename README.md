@@ -6,11 +6,9 @@ A simple and cute weight tracking app built with **React** and **Firebase**.
 Track your daily weight, set goals, and visualize your progress — all in a friendly chick-themed interface! 🐣
 
 ---
-
 ## 📸 Demo
-
-👉 [Live App]([www.weighttrackk.netlify.app](https://weighttrackk.netlify.app/))  
-📦 GitHub Repo: https://github.com/jinyorjin/weight-tracker
+👉 [Live App](https://weighttrackk.netlify.app/)
+📦 GitHub Repo: [https://github.com/jinyorjin/weight-tracker](https://github.com/jinyorjin/weight-tracker)
 
 ---
 
