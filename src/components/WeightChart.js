@@ -11,7 +11,14 @@ import {
 } from "recharts";
 
 function WeightChart({ data }) {
-  const sorted = [...data].sort((a, b) => a.date.localeCompare(b.date));
+  const sorted = [...data].sort(
+    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+  );
+
+  const chartData = sorted.map((item) => ({
+    ...item,
+    date: new Date(item.date.seconds * 1000).toISOString().split("T")[0], // YYYY-MM-DD
+  }));
 
   return (
     <div
@@ -20,7 +27,7 @@ function WeightChart({ data }) {
     >
       <h5 className="text-center mb-3">📊 Weight Trend</h5>
       <ResponsiveContainer width="100%" height={300}>
-        <LineChart data={sorted}>
+        <LineChart data={chartData}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="date" />
           <YAxis domain={["auto", "auto"]} unit="kg" />
