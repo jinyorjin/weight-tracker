@@ -11,14 +11,18 @@ import {
 } from "recharts";
 
 function WeightChart({ data }) {
-  const sorted = [...data].sort(
-    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
-  );
+  const sorted = [...data].sort((a, b) => {
+    const dateA = a.date?.seconds ? new Date(a.date.seconds * 1000) : null;
+    const dateB = b.date?.seconds ? new Date(b.date.seconds * 1000) : null;
+    return dateA && dateB ? dateA.getTime() - dateB.getTime() : 0;
+  });
 
-  const chartData = sorted.map((item) => ({
-    ...item,
-    date: new Date(item.date.seconds * 1000).toISOString().split("T")[0], // YYYY-MM-DD
-  }));
+  const chartData = sorted
+    .filter((item) => item.date?.seconds) // 유효한 날짜만 통과
+    .map((item) => ({
+      ...item,
+      date: new Date(item.date.seconds * 1000).toISOString().split("T")[0], // "YYYY-MM-DD"
+    }));
 
   return (
     <div
