@@ -1,4 +1,3 @@
-// src/components/WeightChart.js
 import React from "react";
 import {
   LineChart,
@@ -11,18 +10,43 @@ import {
 } from "recharts";
 
 function WeightChart({ data }) {
+  const latestByDate = {};
+
+  // 🔸 날짜 기준 정렬
   const sorted = [...data].sort((a, b) => {
-    const dateA = a.date?.seconds ? new Date(a.date.seconds * 1000) : null;
-    const dateB = b.date?.seconds ? new Date(b.date.seconds * 1000) : null;
-    return dateA && dateB ? dateA.getTime() - dateB.getTime() : 0;
+    const dateA = a.date?.seconds
+      ? new Date(a.date.seconds * 1000)
+      : new Date(a.date);
+    const dateB = b.date?.seconds
+      ? new Date(b.date.seconds * 1000)
+      : new Date(b.date);
+    return dateA - dateB;
   });
 
-  const chartData = sorted
-    .filter((item) => item.date?.seconds) // 유효한 날짜만 통과
-    .map((item) => ({
+  // 🔸 날짜별 최신값만 저장
+  sorted.forEach((item) => {
+    let dateStr = "";
+
+    if (item.date?.seconds) {
+      // Firebase Timestamp
+      dateStr = new Date(item.date.seconds * 1000).toISOString().split("T")[0];
+    } else if (typeof item.date === "string") {
+      // 문자열 형식
+      dateStr = item.date.slice(0, 10);
+    }
+
+    if (dateStr) {
+      latestByDate[dateStr] = item;
+    }
+  });
+
+  // 🔸 차트에 쓸 데이터 변환
+  const chartData = Object.entries(latestByDate)
+    .map(([dateStr, item]) => ({
       ...item,
-      date: new Date(item.date.seconds * 1000).toISOString().split("T")[0], // "YYYY-MM-DD"
-    }));
+      date: dateStr,
+    }))
+    .sort((a, b) => new Date(a.date) - new Date(b.date));
 
   return (
     <div

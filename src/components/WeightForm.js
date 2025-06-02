@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { db } from "../firebase";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, Timestamp } from "firebase/firestore";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -12,10 +12,11 @@ function WeightForm() {
     e.preventDefault();
     if (!weight) return;
 
-    const dateString = selectedDate.toISOString().slice(0, 10);
+    // 🔸 날짜를 Firebase Timestamp로 저장
+    const timestamp = Timestamp.fromDate(selectedDate);
 
     await addDoc(collection(db, "weights"), {
-      date: dateString,
+      date: timestamp,
       weight: parseFloat(weight),
     });
 
